@@ -1,0 +1,81 @@
+.container {
+    text-align: center;
+    margin: 2%;
+}
+
+.line {
+    border: 1px solid;
+    width: 80%;
+    margin-bottom: 5%;
+}
+
+.rating {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 5%;
+    margin-bottom: 8%;
+}
+
+.rating button {
+    border-radius: 5px;
+    font-size: smaller;
+    border: 1px solid;
+    margin: 1%;
+}
+
+.list-testimonial {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+
+.testimonial {
+    width: 15%;
+    margin : 5%;
+    padding: 2%;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #cdcdcd;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+}
+
+.testimonial img {
+    width: 100%;
+    height: 60%;
+    border-radius: 3px;
+}
+
+.testimonial .author {
+    text-align: right;
+    font-weight: bold;
+}
+
+.testimonial .quote {
+    line-height: normal;
+    font-style: italic;
+    text-align: right;
+}
+
+.testimonial .star {
+    text-align: right;
+}
+
+.container .rating-container .rating button i {
+    color: white;
+}
+
+@media only screen and (max-width: 900px) {
+    .testimonial {
+        width: 40%;
+    }
+}
+
+
+@media only screen and (max-width: 700px) {
+    .testimonial {
+        width: 100%;
+    }
+}
