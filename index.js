@@ -6,6 +6,7 @@ const port = 5000
 const bcrypt = require('bcrypt')
 const session = require('express-session')
 const flash = require('express-flash')
+const upload = require('./src/middlewares/uploadFile')
 
 const config = require('./src/config/config.json')
 const { Sequelize, QueryTypes } = require("sequelize")
@@ -14,18 +15,18 @@ const sequelize = new Sequelize(config.development)
 let days =""
 let months = ""
 
-const project = [{
-    title : "Mukbangs App",
-    images : "/Image/makanan.jpg",
-    duration : "2 Bulan",
-    description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-    techs : [
-        `<i class="fa-brands fa-node-js"></i>`,    
-        `<i class="fa-brands fa-react"></i>`,
-        `<i class="fa-brands fa-vuejs"></i>`,
-        `<i class="fa-brands fa-js"></i>`
-    ]
-}]
+// const project = [{
+//     title : "Mukbangs App",
+//     images : "/Image/makanan.jpg",
+//     duration : "2 Bulan",
+//     description : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+//     techs : [
+//         `<i class="fa-brands fa-node-js"></i>`,    
+//         `<i class="fa-brands fa-react"></i>`,
+//         `<i class="fa-brands fa-vuejs"></i>`,
+//         `<i class="fa-brands fa-js"></i>`
+//     ]
+// }]
 
 
 app.set ('view engine', 'hbs')
@@ -33,6 +34,7 @@ app.set ('views', path.join(__dirname, 'src/views'))
 
 
 app.use(express.static('src/assets'))
+app.use(express.static('src/uploads'))
 
 app.use(express.urlencoded({ extended : false}))
 
@@ -56,10 +58,10 @@ app.get('/testimonial',testimonial)
 app.get('/contact-me',contactMe)
 app.get('/my-project-detail/:id',myProject)
 app.get('/add-my-project',formMyProject)
+app.post('/add-my-project',upload.single('upload-image'),addMyProject)
 app.get('/edit-project/:id',showEditProject)
-app.get('/delete-project/:id',deleteProject)
-app.post('/add-my-project',addMyProject)
 app.post('/edit-project/:id',editProject)
+app.get('/delete-project/:id',deleteProject)
 app.get('/register', formRegister)
 app.post('/register', addUser)
 app.get('/login', formLogin)
@@ -73,10 +75,9 @@ app.listen(port, () => {
 
 async function home (req, res) {
     try{
-    const query = `SELECT id, title, description, start_date, end_date, technologies FROM projects`
+    const query = `SELECT projects.id, title, description, start_date, end_date, technologies, image, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id ORDER BY projects.id DESC`;
+
     let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
-   
-    // const project = [];
 
     obj.forEach(function(item){
         let techs = []
@@ -107,7 +108,7 @@ async function home (req, res) {
 
     const project = obj.map((res) => ({
       ...res,
-      author: "Mang Jalak"
+      isLogin: req.session.isLogin
     }))
     console.log(project)
     res.render('index' , {content : project,
@@ -152,7 +153,7 @@ async function myProject (req, res) {
     try {
     const { id } = req.params
     
-    const query = `SELECT * FROM projects WHERE id =${id}`
+    const query = `SELECT projects.id, title, description, start_date, end_date, technologies, image, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id =${id}`
     let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
 
     obj.forEach(function(item){
@@ -187,10 +188,8 @@ async function myProject (req, res) {
     })
 
     const data = obj.map((res) => ({
-      ...res,
-      author: "Mang Jalak"
+      ...res
     }))
-    console.log(project)
     res.render('my-project-detail' , {content : data[0], 
         isLogin: req.session.isLogin,
         user: req.session.user})
@@ -201,6 +200,7 @@ async function myProject (req, res) {
 }
 
 function formMyProject (req, res) {
+    console.log(req.session.idUser)
     res.render('add-my-project',{
         isLogin: req.session.isLogin,
         user: req.session.user})
@@ -208,9 +208,8 @@ function formMyProject (req, res) {
 
 async function addMyProject (req, res) {
     try{
-    
-    let image = "image.jpg"
-    
+    const idUser = req.session.idUser
+    const image = req.file.filename
     
     let { title, start_date, end_date, description, node, react, next, script} = req.body
     console.log(title)
@@ -223,7 +222,7 @@ async function addMyProject (req, res) {
     console.log(script)
     console.log(image)
     
-    const query = `INSERT INTO projects (title, start_date, end_date, image, description, technologies, "createdAt", "updatedAt") VALUES ('${title}', '${start_date}','${end_date}', '${image}','${description}', ARRAY['${node}','${react}','${next}','${script}'], NOW(), NOW())`
+    const query = `INSERT INTO projects (title, start_date, end_date, image, description, technologies, author, "createdAt", "updatedAt") VALUES ('${title}', '${start_date}','${end_date}', '${image}','${description}', ARRAY['${node}','${react}','${next}','${script}'], ${idUser}, NOW(), NOW())`
     await sequelize.query(query)
 
     res.redirect('/')
@@ -250,7 +249,8 @@ async function editProject (req, res) {
     try{
         const { id } = req.params
 
-        let image = "image.jpg"
+        const idUser = req.session.idUser
+        const image = req.file.filename
         
         
         let { title, start_date, end_date, description, node, react, next, script} = req.body
@@ -326,6 +326,7 @@ async function addUser(req, res) {
           return res.redirect('/login')
         } else {
           req.session.isLogin = true,
+          req.session.idUser = obj[0].id
           req.session.user = obj[0].name
           req.flash('success', ' login success')
           req.flash('danger', 'password wrong')

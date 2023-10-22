@@ -60,7 +60,7 @@
           <div class="m-5">
               <h1 class="text-center mb-4">{{content.title}}</h1>
               <div class="d-flex flex-wrap mb-5 justify-content-evenly">
-                  <img src="/Image/makanan.jpg" alt="makan" class="w-50"/>
+                  <img src={{content.image}} alt="makan" class="w-50"/>
                   <div style="width: 35%;">
                       <h2 class="mb-3">Duration</h2>
                       <div class="mb-4">
@@ -76,9 +76,8 @@
                           <div class="d-flex flex-column justify-content-between">
                               {{{content.tech2}}}
                           </div>
-                          
                       </div>
-
+                      <p>author : {{content.author}}</p>
                   </div>
                   
               </div>
