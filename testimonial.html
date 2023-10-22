@@ -1,9 +1,10 @@
 <html>
     <head>
-        <title>Contact Me</title>
+        <title>Testimonial</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="./Assets/css/style.css" rel="stylesheet" />
         <link rel="stylesheet" href="./Assets/css/mobile.css" />
+        <link rel="stylesheet" href="./Assets/css/testimonial.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
@@ -27,7 +28,7 @@
             <div class="nav-right">
                 <a href="./contact-me.html" class="item-gone">Contact me</a>
             </div>
-            
+
             <div class="nav-right" id="bars-menu">
                 <button class="menu-button" onclick="openMenu()">
                     <i class="fa-solid fa-bars"></i>
@@ -42,43 +43,46 @@
             <a href="./contact-me.html">Contact Me</a>
         </div>
 
-        <form>
-            <h1 style="text-align: center;">Get In Touch</h1>
-            <div>
-                <label for="name">Name</label>
-                <input type="text" id="name" placeholder="Your Name" />
+        <div class="container">
+            <h1 class="judul">My Testimonial</h1>
+            <div class="rating-container">
+                <h2>Rating by star</h2>
+                <div class="rating">
+                    <button onclick="showTestimonial()">All</button>
+                    <button onclick="filterTestimonial(1)">
+                        1 <i class="fa-solid fa-star"></i>
+                    </button>
+                    <button onclick="filterTestimonial(2)">
+                        2 <i class="fa-solid fa-star"></i>
+                    </button>
+                    <button onclick="filterTestimonial(3)">
+                        3 <i class="fa-solid fa-star"></i>
+                    </button>
+                    <button onclick="filterTestimonial(4)">
+                        4 <i class="fa-solid fa-star"></i>
+                    </button>
+                    <button onclick="filterTestimonial(5)">
+                        5 <i class="fa-solid fa-star"></i>
+                    </button>
+                </div>
+
             </div>
 
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Your Email" />
-            </div>
-
-            <div>
-                <label for="phone">Phone Number</label>
-                <input type="text" id="phone" placeholder="Your Phone number"/>
-            </div>
-
-            <div>
-                <label for="subject">Subject</label>
-                <Select id="subject">
-                    <option value="" hidden></option>
-                    <option value="Frontend Developer">Frontend Developer</option>
-                    <option value="Backend Developer">Backend Developer</option>
-                    <option value="Fullstack Developer">Fullstack</option>
-                </Select>
-            </div>
-
-            <div>
-                <label for="message">Message</label>
-                <textarea id="message" placeholder="Enter Your Message"></textarea>
-            </div>
-            <div>
-                <button type="button" onclick="getData()">Submit</button>
-            </div>
             
-        </form>
+            <hr class="line"/>
+            
+            <section class="list-testimonial" id="list-testimonial">
+                <!-- <div class="testimonial">
+                    <img src="./Assets/Image/chelsea.jpeg"/>
+                    <p class="quote">Bang udah Bang</p>
+                    <p class="author">Average Fans Chelsea</p>
+                    <p> 5 <i class="fa-solid fa-star"></i></p>
+                </div> -->
+            </section>
+        </div>
     </body>
-    <script src="Assets/Js/script.js"></script>
+
+    <script src="Assets/Js/project.js"></script>
     <script src="Assets/Js/button.js"></script>
+    <script src="Assets/Js/testimonial-ajax.js"></script>
 </html>
