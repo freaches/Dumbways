@@ -1,77 +1,117 @@
 <html>
     <head>
-        <title>
-            Day 2 - Task 1
-        </title>
-        <link href="./Assets/css/style.css" rel="stylesheet">
-        <script src="https://kit.fontawesome.com/4ac8182061.js" crossorigin="anonymous"></script> 
+        <title>Home</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./Assets/css/style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./Assets/css/mobile.css" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" /> 
     </head>
     <body>
-        <nav>
-            <div class="nav-left">
-                <ul>
-                    <img src="./Assets/Image/logo.png"/>
-                    <li>
-                        <a href="./index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="my-project.html">My Project</a>
-                    </li>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container">
+              <a class="navbar-brand me-5" href="index.html">
+                <img src="Assets/Image/logo.png" alt="logo"/>   
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item me-2">
+                    <a class="nav-link active" href="index.html">Home</a>
+                  </li>
+                  <li class="nav-item me-2">
+                    <a class="nav-link" href="add-my-project.html">Add My Project</a>
+                  </li>
+                  <li class="nav-item me-2">
+                    <a class="nav-link" href="testimonial.html">Testimonial</a>
+                  </li>
                 </ul>
+                <div class="d-flex" role="search">
+                  <a class="btn btn-danger" href="./contact-me.html">Contact Me</a>
+                </div>
+              </div>
             </div>
-
-            <div class="nav-right">
-                <a href="./contact-me.html">Contact me</a>
-            </div>
-
         </nav>
-        <div class="home">
-            <div class="text">
-                <h1>
-                    Hi Welcome To My Hut
-                </h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. 
-                    Nunc mi ipsum faucibus vitae. Sed elementum tempus egestas sed sed risus. 
-                    Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. 
-                    Leo vel orci porta non pulvinar neque. Felis donec et odio pellentesque diam. 
-                    Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet. 
-                    Lorem donec massa sapien faucibus et molestie ac feugiat. 
-                    Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit sed. 
-                    Non tellus orci ac auctor augue mauris augue neque gravida. 
-                </p>
-                <br>
-                <a href="#" class="kontak">kontak</a>
-                <a href="https://www.youtube.com/watch?v=Fu0rwDYAlwg">
-                    download CV
-                    <img src="./Assets/Image/download.svg" alt="download" width="15px" height="15px" style="margin-left: 5px;"/>
-                </a>
-                <div class="logo">
-                    <span style="cursor: pointer" class="fa-stack fa-xm">   
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-linkedin-in fa-stack-1x fa-inverse fa-lg"></i>
-                    </span>
-                    <span style="cursor: pointer" class="fa-stack fa-xm">   
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-instagram fa-stack-1x fa-inverse fa-lg"></i>
-                    </span>
-                    <span style="cursor: pointer" class="fa-stack fa-xm">
-                        <i class="fab fa-facebook fa-stack-1x fa-2x"></i>
-                    </span>
-                    <span style="cursor: pointer" class="fa-stack fa-xm">
-                        <i class="fas fa-circle fa-stack-2x"></i>
-                        <i class="fab fa-twitter fa-stack-1x fa-inverse fa-lg"></i>
-                    </span>
+        <div class="container-fluid bg-secondary-subtle p-5">
+            <div class="rounded bg-light p-5 d-flex justify-content-around">
+            
+                <div class="w-50">
+                    <h1 class="text-start mb-5">
+                        Hi Welcome To My Hut
+                    </h1>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Sit amet consectetur adipiscing elit duis tristique sollicitudin nibh sit. 
+                        Nunc mi ipsum faucibus vitae. Sed elementum tempus egestas sed sed risus. 
+                        Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. 
+                        Leo vel orci porta non pulvinar neque. Felis donec et odio pellentesque diam. 
+                        Nulla facilisi morbi tempus iaculis urna id volutpat lacus laoreet. 
+                        Lorem donec massa sapien faucibus et molestie ac feugiat. 
+                        Molestie ac feugiat sed lectus vestibulum mattis ullamcorper velit sed. 
+                        Non tellus orci ac auctor augue mauris augue neque gravida. 
+                    </p>
+                    <br>
+                    <a href="#" class="btn btn-primary me-2">kontak</a>
+                    <a href="https://www.youtube.com/watch?v=Fu0rwDYAlwg" class="text-decoration-none    text-dark">download CV
+                        <img src="./Assets/Image/download.svg" alt="download" width="15px" height="15px" style="margin-left: 5px;"/>
+                    </a>
+                    <div class="text-center mt-4">
+                        <span style="cursor: pointer" class="fa-stack fa-xm">   
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-linkedin-in fa-stack-1x fa-inverse fa-lg"></i>
+                        </span>
+                        <span style="cursor: pointer" class="fa-stack fa-xm">   
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-instagram fa-stack-1x fa-inverse fa-lg"></i>
+                        </span>
+                        <span style="cursor: pointer" class="fa-stack fa-xm">
+                            <i class="fab fa-facebook fa-stack-1x fa-2x"></i>
+                        </span>
+                        <span style="cursor: pointer" class="fa-stack fa-xm">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-twitter fa-stack-1x fa-inverse fa-lg"></i>
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="text-center align-self-center border border-2 border-black rounded" style="width: 35%;">
+                    <img src="./Assets/Image/Gambar.jpg" alt="foto" width="100%"/>
+                    <p style="padding-top: 10px; margin: auto; font-size: larger; font-weight: bold;">Denis Tanujaya</p>
+                    <p style="padding-top: 0px; padding-bottom: 20px; font-size: small;">Full Stack Developer</p>
                 </div>
             </div>
-            
-            <div class="foto">
-                <img src="./Assets/Image/Gambar.jpg" alt="foto" width="100%" style="border-radius: 10px;"/>
-                <p style="padding-top: 10px; margin: auto; font-size: larger; font-weight: bold;">Denis Tanujaya</p>
-                <p style="padding-top: 0px; padding-bottom: 20px; font-size: small;">Full Stack Developer</p>
-            </div>
         </div>
+        <div class="container-fluid p-5 mt-5">
+            <h1 class="text-center mb-4">My Project</h1>
+            <hr>
+            <div class="p-5 d-flex flex-wrap justify-content-around" id="contents">
+                <div class="w-25 bg-secondary-subtle p-3 rounded">
+                    <img src="./Assets/Image/makanan.jpg" alt="makan" class="w-100"/>
+                    <a href="my-project-detail.html" target="_blank" class="text-black fs-4 text-decoration-none">Makan Mukbang Kuy Apps</a>
+                    <p style="font-size: 15px; color: grey;">Durasi : 1 Bulan</p>
+                    <p class="fs-6">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    </p>
+                    <div class="d-flex justify-content-around fs-4 mb-3">
+                    <i class="fa-brands fa-node-js"></i>    
+                    <i class="fa-brands fa-react"></i>
+                    <i class="fa-brands fa-vuejs"></i>
+                    <i class="fa-brands fa-js"></i>
+                    </div>
+                    <div class="d-flex justify-content-around mt-2">
+                        <button class="rounded bg-primary">Edit</button>
+                        <button class="rounded bg-primary">Delete</button>
+                    </div>
+                </div>
+
+            </div>
     </body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="Assets/Js/project.js"></script>
+    <script src="Assets/Js/button.js"></script>
 </html>

@@ -98,16 +98,17 @@ button {
     box-shadow : 0  0   10px gray;
     text-align: justify;
     background-color: white;
+    justify-content: space-between;
 }
 .text {
-    width: 600px;
+    width: 100%;
     font-size:medium;
 }
 
 .foto {
     text-align: center;
     margin : auto 0  auto 50px; 
-    width: 300px; 
+    width: 80%; 
     border-radius: 10px; 
     box-shadow: 0 0 15px grey;
     float: right;
@@ -137,11 +138,11 @@ button {
 .judul {
     text-align: center;
     margin-bottom: 50px;
-    font-size: 30px;
+    font-size: x-large;
 }
 .project-detail {
     border:1px ;
-    margin: 100px;
+    margin: 10%;
     padding : 75px 75px;
     border-radius : 10px;
     box-shadow : 0  0 10px gray;
@@ -242,20 +243,20 @@ button {
 
 /* Project lis */
 
-.project .projectBody {
+ .projectBody {
     background-color: white;
     padding: 20px;
 }
     
 
-.project .projectBody hr {
+ .projectBody hr {
     border: 1px solid black;
     width: 80%;
     margin-right: auto;
     margin-left: auto;
 }
 
-.project .projectBody .project-list {
+ .projectBody .project-list {
     margin-top: 80px;
     margin-bottom: 80px;
     display: flex;
@@ -264,33 +265,36 @@ button {
     justify-content: space-around;
 }
 
-.project .projectBody .project-list .project-list-items {
+ .projectBody .project-list .project-list-items {
     width: 25%;
     padding: 15px;
     margin-bottom: 20px;
     border: 2px solid #dbdbdb;
     border-radius: 8px;
 }
-.project .projectBody .project-list .project-list-items img {
+ .projectBody .project-list .project-list-items img {
     width: 100%;
     border-radius: 8px;
 }
 
-.project .projectBody .project-list .project-list-items i {
+ .projectBody .project-list .project-list-items i {
     font-size: 30px;
     margin-right: 5px;
 }
 
-.project .projectBody .project-list .project-list-items .edit {
+ .projectBody .project-list .project-list-items .edit {
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
 }
 
-.project .projectBody .project-list .project-list-items .edit button {
+ .projectBody .project-list .project-list-items .edit button {
     width: 40%;
     background-color:#000033;
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
 }
