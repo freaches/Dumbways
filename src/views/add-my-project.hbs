@@ -29,6 +29,33 @@
                     <a class="nav-link" href="/testimonial">Testimonial</a>
                   </li>
                 </ul>
+                {{#if isLogin}}
+                  <li class="nav-item me-2">
+                    <a class="nav-link" href="/add-my-project">Add My Project</a>
+                  </li>
+                  {{/if}}
+                  <li class="nav-item me-2">
+                    <a class="nav-link" href="/testimonial">Testimonial</a>
+                  </li>
+                </ul>
+                 <div class="d-flex justify-content-end">
+                    <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+                        {{#if isLogin}}
+                        <li class="nav-item">
+                            <a class="nav-link text-danger active fw-semibold" href="#">Hallo, {{user}}</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a class="nav-link" href="/logout">Logout</a>
+                        </li>
+                        {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link text-danger active fw-semibold" href="/register">Register</a>
+                        </li>
+                        <li class="nav-item ms-3">
+                            <a class="nav-link" href="/login">Login</a>
+                        </li>
+                        {{/if}}
+                    </ul>
                 <div class="d-flex" role="search">
                   <a class="btn btn-danger" href="/contact-me">Contact Me</a>
                 </div>

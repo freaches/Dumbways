@@ -3,6 +3,9 @@ const path = require('path')
 const { prependListener } = require('process')
 const app = express()
 const port = 5000
+const bcrypt = require('bcrypt')
+const session = require('express-session')
+const flash = require('express-flash')
 
 const config = require('./src/config/config.json')
 const { Sequelize, QueryTypes } = require("sequelize")
@@ -33,15 +36,36 @@ app.use(express.static('src/assets'))
 
 app.use(express.urlencoded({ extended : false}))
 
+app.use(flash())
+
+app.use(session({
+    cookie: {
+      httpOnly: true,
+      secure: false,
+      maxAge: 1000 * 60 * 60 * 2
+    },
+    store: new session.MemoryStore(),
+    saveUninitialized: true,
+    resave: false,
+    secret: 'kingking'
+  })
+)
+
 app.get('/', home)
 app.get('/testimonial',testimonial)
 app.get('/contact-me',contactMe)
 app.get('/my-project-detail/:id',myProject)
 app.get('/add-my-project',formMyProject)
-app.post('/add-my-project',addMyProject)
-app.get('/delete-project/:id',deleteProject)
 app.get('/edit-project/:id',showEditProject)
+app.get('/delete-project/:id',deleteProject)
+app.post('/add-my-project',addMyProject)
 app.post('/edit-project/:id',editProject)
+app.get('/register', formRegister)
+app.post('/register', addUser)
+app.get('/login', formLogin)
+app.post('/login', userLogin)
+
+
 
 app.listen(port, () => {
     console.log ("Server running on port 5000")
@@ -86,7 +110,10 @@ async function home (req, res) {
       author: "Mang Jalak"
     }))
     console.log(project)
-    res.render('index' , {content : project})
+    res.render('index' , {content : project,
+        isLogin: req.session.isLogin,
+        user: req.session.user
+      })
     } catch(err) {
 
     }
@@ -249,17 +276,54 @@ function waktu (awal,akhir){
     days = totaldays % 30
 }
 
-function renderIcon(icon) {
-    if (icon.technologies) {
-        technologies.push(`<i class="fa-brands fa-node-js"></i>`)
-    }
-    if (react) {
-        technologies.push(`<i class="fa-brands fa-react"></i>`)
-    }
-    if (next) {
-        technologies.push(`<i class="fa-brands fa-vuejs"></i>`)
-    }
-    if (script) {
-        technologies.push(`<i class="fa-brands fa-js"></i>`)  
-    }
+function formRegister(req, res) {
+    res.render('register')
 }
+
+async function addUser(req, res) {
+    try {
+      const { name, email, password } = req.body
+  
+      await bcrypt.hash(password, 10, (err, hashPassword) => {
+        const query = `INSERT INTO users (name, email, password, "createdAt", "updatedAt") VALUES ('${name}', '${email}', '${hashPassword}', NOW(), NOW())`
+        
+        sequelize.query(query)
+      })
+      res.redirect('/login')
+    } catch (err) {
+      throw err
+    }
+  }
+  
+  function formLogin(req, res) {
+    res.render('login')
+  }
+
+  async function userLogin(req, res) {
+    try {
+      const { email, password } = req.body
+      const query = `SELECT * FROM users WHERE email = '${email}'`
+      let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
+  
+      if(!obj.length) {
+        req.flash('danger', "user has not been registered")
+        return res.redirect('/login')
+      }
+  
+      await bcrypt.compare(password, obj[0].password, (err, result) => {
+        if(!result) {
+          req.flash('danger', 'password wrong')
+          return res.redirect('/login')
+        } else {
+          req.session.isLogin = true,
+          req.session.user = obj[0].name
+          req.flash('success', ' login success')
+          req.flash('danger', 'password wrong')
+          return res.redirect('/')
+        }
+      })
+  
+    } catch (err) {
+      throw err
+    }
+  }

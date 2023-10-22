@@ -10,8 +10,11 @@
   "author": "Denis Tanujaya",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "express": "^4.18.2",
+    "express-flash": "^0.0.2",
     "express-handlebars": "^7.1.2",
+    "express-session": "^1.17.3",
     "font-awesome": "^4.7.0",
     "hbs": "^4.2.0",
     "method-override": "^3.0.0",
