@@ -98,16 +98,17 @@ button {
     box-shadow : 0  0   10px gray;
     text-align: justify;
     background-color: white;
+    justify-content: space-between;
 }
 .text {
-    width: 600px;
+    width: 100%;
     font-size:medium;
 }
 
 .foto {
     text-align: center;
     margin : auto 0  auto 50px; 
-    width: 300px; 
+    width: 80%; 
     border-radius: 10px; 
     box-shadow: 0 0 15px grey;
     float: right;
@@ -141,7 +142,7 @@ button {
 }
 .project-detail {
     border:1px ;
-    margin: 100px;
+    margin: 10%;
     padding : 75px 75px;
     border-radius : 10px;
     box-shadow : 0  0 10px gray;
@@ -293,4 +294,7 @@ button {
     color: white;
     border-radius: 8px;
     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
 }

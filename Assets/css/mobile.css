@@ -1,0 +1,82 @@
+#bars-menu {
+    display: none;
+}
+
+.menu-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #000000;
+}
+
+.menu-container {
+    display: none;
+}
+
+.menu-container a {
+    text-decoration: none;
+    background-color: darkgray;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ffffff;
+}
+
+.menu-container .home-button {
+    background-color: orangered;
+}
+
+@media only screen and (max-width : 900px) {
+    .home {
+        flex-direction: column;
+        margin : 10%;
+    }
+
+    .text {
+        justify-content: center;
+    }
+
+    .foto {
+        margin: 20px 0 0 0;
+        width: 100%;
+    }
+
+    .project-detail .information {
+        flex-direction: column;
+    }
+
+    .project-detail .information img {
+        width: 100%;
+    }
+
+    .project-detail .information .type-data {
+        width: 100%;
+        padding: 15px 0;
+    }
+    .project-detail .information .type-data .tengah {
+        text-align: center;
+    }
+}
+
+@media only screen and (max-width : 750px) {
+    .project .projectBody .project-list .project-list-items {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width : 550px) {
+    .item-gone {
+        display: none;
+    }
+
+    #bars-menu {
+        display: block;
+    }
+    
+    .project .project-form {
+        margin: 0 20px;
+        justify-content: center;
+        align-items: center;
+    }
+}

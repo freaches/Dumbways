@@ -10,11 +10,17 @@ function waktu (awal,akhir){
 
     let selisih = dataEnd.getTime() - dataStart.getTime()
     let totaldays = selisih/oneDay
-    let totalmonths = Math.floor (totaldays/30)
-        totaldays = totaldays % 30
+    months  = Math.floor (totaldays/30)
+    days = totaldays % 30
+}
 
-    days = totaldays
-    months = totalmonths
+function durasi (days, months){
+    if (months > 0) {
+        return months + " Bulan"
+    } else if ( days > 0)
+    {
+        return days + " Hari"
+    }
 }
 
 function isiProject(event) {
@@ -62,7 +68,7 @@ function renderMyProject() {
         document.getElementById("contents").innerHTML += `<div class="project-list-items">
         <img src="${myProject[i].image}" alt="makan"/>
         <h1><a href="my-project-detail.html" target="_blank">${myProject[i].projectName}</a></h1>
-        <p style="font-size: 15px; color: grey;">Durasi : ${myProject[i].months} Bulan</p>
+        <p style="font-size: 15px; color: grey;">Durasi : ${durasi(myProject[i].days, myProject[i].months)}</p>
         <p>
         ${myProject[i].description}
         </p>

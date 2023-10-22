@@ -1,7 +1,9 @@
 <html>
     <head>
-        <title>Project-1</title>
-        <link href="./Assets/css/style.css" rel="stylesheet">
+        <title>My Project</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="./Assets/css/style.css" rel="stylesheet" />
+        <link rel="stylesheet" href="./Assets/css/mobile.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
 
@@ -11,19 +13,30 @@
                 <ul>
                     <img src="./Assets/Image/logo.png"/>
                     <li>
-                        <a href="./index.html">Home</a>
+                        <a href="./index.html" class="item-gone">Home</a>
                     </li>
                     <li>
-                        <a href="my-project.html">My Project</a>
+                        <a href="my-project.html" class="item-gone">My Project</a>
                     </li>
                 </ul>
             </div>
 
             <div class="nav-right">
-                <a href="./contact-me.html">Contact me</a>
+                <a href="./contact-me.html" class="item-gone">Contact me</a>
             </div>
 
+            <div class="nav-right" id="bars-menu">
+                <button class="menu-button" onclick="openMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
         </nav>
+
+        <div class="menu-container" id="menu-container">
+            <a href="./index.html" class="home-button">Home</a>
+            <a href="./my-project.html">My Project</a>
+            <a href="./contact-me.html">Contact Me</a>
+        </div>
 
         <div class="project">
             <div class="project-form">
@@ -112,4 +125,5 @@
         </div>
     </body>
     <script src="Assets/Js/project.js"></script>
+    <script src="Assets/Js/button.js"></script>
 </html>
