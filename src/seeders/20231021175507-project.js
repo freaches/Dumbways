@@ -12,6 +12,15 @@ module.exports = {
         technologies : ["Node Js", "React Js", "Next Js", "Type Script"],
         createdAt : new Date(),
         updatedAt : new Date()
+       },{
+        title: "Minum apps",
+        description : "Minum mukbang bersama real madrid",
+        image : "image.jpg",
+        start_date : new Date(),
+        end_date : "2024-2-13",
+        technologies : ["Node Js", "Type Script"],
+        createdAt : new Date(),
+        updatedAt : new Date()
        }], {});
 
   },

@@ -36,7 +36,7 @@ app.use(express.urlencoded({ extended : false}))
 app.get('/', home)
 app.get('/testimonial',testimonial)
 app.get('/contact-me',contactMe)
-app.get('/my-project-detail',myProject)
+app.get('/my-project-detail/;id',myProject)
 app.get('/add-my-project',formMyProject)
 app.post('/add-my-project',addMyProject)
 app.get('/delete-project/:id',deleteProject)
@@ -50,17 +50,17 @@ async function home (req, res) {
     try{
         const query = `SELECT id, title, description, start_date, end_date, technologies FROM projects`
     let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
-    
-    let duration =""
-    let techs= []
+   
+    // const project = [];
 
-    obj.forEach(item => {
+    obj.forEach(function(item){
+        let techs = []
         waktu(item.start_date, item.end_date)
         if (months > 0) {
-            duration = months + " Bulan"
+            item.duration = months + " Bulan"
         } else if ( days > 0)
         {
-            duration = days + " Hari"
+            item.duration = days + " Hari"
         }
         for (let i = 0 ; i<4 ; i++){
             if (item.technologies[i] == "Node Js") {
@@ -76,21 +76,17 @@ async function home (req, res) {
                 techs.push(`<i class="fa-brands fa-js"></i>`)
             }
         }
+        item.techs = techs
+        
     })
 
-    // for (let key in obj){
-    //     waktu(obj[key].start_date,obj[key].end_date)
-
-    //     obj[key].push(duration)
-
-    //     console.log(obj[key])
+    // for (let i = 0 ; i<obj.length ; i++){
+    //     console.log(obj[i])
     // }
 
     const project = obj.map((res) => ({
       ...res,
-      author: "Mang Jalak",
-      duration,
-      techs
+      author: "Mang Jalak"
     }))
     console.log(project)
     res.render('index' , {content : project})
