@@ -10,11 +10,17 @@ function waktu (awal,akhir){
 
     let selisih = dataEnd.getTime() - dataStart.getTime()
     let totaldays = selisih/oneDay
-    let totalmonths = Math.floor (totaldays/30)
-        totaldays = totaldays % 30
+    months  = Math.floor (totaldays/30)
+    days = totaldays % 30
+}
 
-    days = totaldays
-    months = totalmonths
+function durasi (days, months){
+    if (months > 0) {
+        return months + " Bulan"
+    } else if ( days > 0)
+    {
+        return days + " Hari"
+    }
 }
 
 function isiProject(event) {
@@ -59,18 +65,21 @@ function renderMyProject() {
     document.getElementById("contents").innerHTML =""
      
     for (let i = 0 ; i < myProject.length ; i++){
-        document.getElementById("contents").innerHTML += `<div class="project-list-items">
-        <img src="${myProject[i].image}" alt="makan"/>
-        <h1><a href="my-project-detail.html" target="_blank">${myProject[i].projectName}</a></h1>
-        <p style="font-size: 15px; color: grey;">Durasi : ${myProject[i].months} Bulan</p>
-        <p>
-        ${myProject[i].description}
-        </p>
-        
-        ${renderIcon(myProject[i])}
-        <div class="edit">
-            <button>Edit</button>
-            <button>Delete</button>
+        document.getElementById("contents").innerHTML += `
+        <div class="w-25 bg-secondary-subtle p-3 rounded">
+            <img src="${myProject[i].image}" alt="makan" class="w-100"/>
+            <a href="my-project-detail.html" target="_blank" class="text-black fs-4 text-decoration-none">${myProject[i].projectName}s</a>
+            <p style="font-size: 15px; color: grey;">Durasi : ${durasi(myProject[i].days, myProject[i].months)}</p>
+            <p class="fs-6">
+            ${myProject[i].description}
+            </p>
+            <div class="d-flex justify-content-around fs-4 mb-3">
+            ${renderIcon(myProject[i])}
+            </div>
+            <div class="d-flex justify-content-around mt-2">
+                <button class="rounded bg-primary">Edit</button>
+                <button class="rounded bg-primary">Delete</button>
+             </div>
         </div>`
     }
 }
