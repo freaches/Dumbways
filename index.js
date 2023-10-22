@@ -120,11 +120,15 @@ async function home (req, res) {
 }
 
 function testimonial (req, res) {
-    res.render('testimonial')
+    res.render('testimonial',{
+        isLogin: req.session.isLogin,
+        user: req.session.user})
 }
 
 function contactMe (req, res) {
-    res.render('contact-me')
+    res.render('contact-me',{
+        isLogin: req.session.isLogin,
+        user: req.session.user})
 }
 
 async function showEditProject(req,res){
@@ -136,7 +140,9 @@ async function showEditProject(req,res){
         const data = obj.map((res) => ({
             ...res
           }))
-        res.render('edit-my-project',{content:data[0]})
+        res.render('edit-my-project',{content:data[0],
+            isLogin: req.session.isLogin,
+            user: req.session.user})
     } catch(error){
         console.log(error)
     }
@@ -185,7 +191,9 @@ async function myProject (req, res) {
       author: "Mang Jalak"
     }))
     console.log(project)
-    res.render('my-project-detail' , {content : data[0]})
+    res.render('my-project-detail' , {content : data[0], 
+        isLogin: req.session.isLogin,
+        user: req.session.user})
     } catch(err) {
 
     }
@@ -193,7 +201,9 @@ async function myProject (req, res) {
 }
 
 function formMyProject (req, res) {
-    res.render('add-my-project')
+    res.render('add-my-project',{
+        isLogin: req.session.isLogin,
+        user: req.session.user})
 }
 
 async function addMyProject (req, res) {
