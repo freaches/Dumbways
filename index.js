@@ -59,7 +59,7 @@ app.get('/contact-me',contactMe)
 app.get('/my-project-detail/:id',myProject)
 app.get('/add-my-project',formMyProject)
 app.post('/add-my-project',upload.single('upload-image'),addMyProject)
-app.get('/edit-project/:id',showEditProject)
+app.get('/edit-project/:id',upload.single('upload-image'),showEditProject)
 app.post('/edit-project/:id',editProject)
 app.get('/delete-project/:id',deleteProject)
 app.get('/register', formRegister)
@@ -153,7 +153,7 @@ async function myProject (req, res) {
     try {
     const { id } = req.params
     
-    const query = `SELECT projects.id, title, description, start_date, end_date, technologies, image, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id =${id}`
+    const query = `SELECT projects.id, title, description, image, start_date, end_date, technologies, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id =${id}`
     let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
 
     obj.forEach(function(item){
@@ -190,6 +190,7 @@ async function myProject (req, res) {
     const data = obj.map((res) => ({
       ...res
     }))
+    console.log(data)
     res.render('my-project-detail' , {content : data[0], 
         isLogin: req.session.isLogin,
         user: req.session.user})
