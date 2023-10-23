@@ -59,8 +59,8 @@ app.get('/contact-me',contactMe)
 app.get('/my-project-detail/:id',myProject)
 app.get('/add-my-project',formMyProject)
 app.post('/add-my-project',upload.single('upload-image'),addMyProject)
-app.get('/edit-project/:id',upload.single('upload-image'),showEditProject)
-app.post('/edit-project/:id',editProject)
+app.get('/edit-project/:id',showEditProject)
+app.post('/edit-project/:id',upload.single('upload-image'),editProject)
 app.get('/delete-project/:id',deleteProject)
 app.get('/register', formRegister)
 app.post('/register', addUser)
@@ -136,7 +136,7 @@ async function showEditProject(req,res){
     try{
         const { id } = req.params
 
-        const query = `SELECT * FROM projects WHERE id =${id}`
+        const query = `SELECT projects.id, title, description, image, start_date, end_date, technologies, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id =${id}`
         let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
         const data = obj.map((res) => ({
             ...res
@@ -267,7 +267,7 @@ async function editProject (req, res) {
         console.log(image)
         
         const query = `UPDATE projects 
-        SET title = '${title}', start_date = '${start_date}', end_date = '${end_date}', image = '${image}', description = '${description}', technologies =  ARRAY['${node}','${react}','${next}','${script}'], "createdAt" = NOW(), "updatedAt" = NOW() WHERE ID=${id}`
+        SET title = '${title}', start_date = '${start_date}', end_date = '${end_date}', image = '${image}', description = '${description}', technologies =  ARRAY['${node}','${react}','${next}','${script}'], "createdAt" = NOW(), "updatedAt" = NOW() WHERE projects.id=${id}`
         await sequelize.query(query)
     
         res.redirect('/')
