@@ -152,8 +152,9 @@ async function showEditProject(req,res){
 async function myProject (req, res) {
     try {
     const { id } = req.params
+    console.log(id)
     
-    const query = `SELECT projects.id, title, description, image, start_date, end_date, technologies, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id =${id}`
+    const query = "SELECT projects.id, title, description, image, start_date, end_date, technologies, users.name AS author FROM projects LEFT JOIN users ON projects.author = users.id WHERE projects.id ="+id
     let obj = await sequelize.query(query, { type: QueryTypes.SELECT })
 
     obj.forEach(function(item){
@@ -191,7 +192,7 @@ async function myProject (req, res) {
       ...res
     }))
     console.log(data)
-    res.render('my-project-detail' , {content : data[0], 
+    res.render('my-project-detail', {content : data[0], 
         isLogin: req.session.isLogin,
         user: req.session.user})
     } catch(err) {
